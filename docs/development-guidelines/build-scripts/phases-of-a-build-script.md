@@ -60,11 +60,11 @@ In this example, you can use your CI system variable substitution to apply the c
 
 ### **CONSIDER** using a semantic versioning (SemVer) model of assigning version numbers
 {: .text-yellow-300 }
-Semantic versioning is hugely important when sharing your code with other internal or external users downstream. When there are no downstream consumers of your code as a library, you have considerably more latitude in choosing a versioning scheme.
+Semantic versioning (shortened to [SemVer](https://semver.org/)) is hugely important when sharing your code with other internal or external users downstream. When there are no downstream consumers of your code as a library, you have considerably more latitude in choosing a versioning scheme.
 
 ### **CONSIDER** using GitVersion to apply a unique version based on your Git history and branching strategy
 {: .text-yellow-300 }
-[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a tool that you can configure with your current branching strategy and run during the build process to generate a [SemVer](https://semver.org/) compliant version number for a particular Git revision. If you run GitVersion again against the same Git revision, it will generate the same version number.
+[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a tool that you can configure with your current branching strategy and run during the build process to generate a SemVer-compliant version number for a particular Git revision. If you run GitVersion again against the same Git revision, it will generate the same version number.
 
 GitVersion should be added to your local tools. If you are starting a new project, you may not have a tools manifest yet, you can create one easily:
 
