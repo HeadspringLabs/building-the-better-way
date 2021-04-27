@@ -76,7 +76,7 @@ At compile time, MinVer will examine the latest Git tag and set the MSBuild vers
 
 ### **CONSIDER** using GitVersion to apply unique versions without any dev intervention
 {: .text-yellow-300 }
-[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a tool that you can configure with your current branching strategy and run during the build process to generate a SemVer-compliant version number for a particular Git revision. If you run GitVersion again against the same Git revision, it will generate the same version number.
+[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a more robust alternative to MinVer that takes the repository's branching strategy into consideration when generating version numbers. This comes with additional configuration complexity, but ultimately allows full version numbers to be applied with minimal-to-no developer intervention. This can be helpful in situations where versions are not "consumer-critical" e.g. good for pairing web releases to log properties, but not for Nuget packages or API versions.
 
 GitVersion should be added to your local tools. If you are starting a new project, you may not have a tools manifest yet, you can create one easily:
 
