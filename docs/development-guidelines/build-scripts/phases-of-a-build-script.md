@@ -66,7 +66,7 @@ Semantic versioning (shortened to [SemVer](https://semver.org/)) is hugely impor
 {: .text-green-100 }
 [MinVer](https://github.com/adamralph/minver#readme) is a simple tool that generates a SemVer-compliant version number at build-time based on Git history. When building a particular Git revision with MinVer installed, it will always generate the same version number. Unlike other automated versioning tools, MinVer is based exclusively on Git tags and commit "height" between tags, granting a great deal of control over the version, regardless of branching strategy.
 
-MinVer is a Nuget package. Whether you are starting a new project or introducing it later, you should install the [package](https://www.nuget.org/packages/MinVer) for all projects that need to be versioned:
+MinVer is a NuGet package. Whether you are starting a new project or introducing it later, you should install the [package](https://www.nuget.org/packages/MinVer) for all projects that need to be versioned:
 
 ```powershell
 dotnet add package MinVer
@@ -76,7 +76,7 @@ At compile time, MinVer will examine the latest Git tag and set the MSBuild vers
 
 ### **CONSIDER** using GitVersion to apply unique versions without any dev intervention
 {: .text-yellow-300 }
-[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a more robust alternative to MinVer that takes the repository's branching strategy into consideration when generating version numbers. This comes with additional configuration complexity, but ultimately allows full version numbers to be applied with minimal-to-no developer intervention. This can be helpful in situations where versions are not "consumer-critical" e.g. good for pairing web releases to log properties, but not for Nuget packages or API versions.
+[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a more robust alternative to MinVer that takes the repository's branching strategy into consideration when generating version numbers. This comes with additional configuration complexity, but ultimately allows full version numbers to be applied with minimal-to-no developer intervention. This can be helpful in situations where versions are not "consumer-critical" e.g. good for pairing web releases to log properties, but not for NuGet packages or API versions.
 
 GitVersion is a separate executable that should be installed as a dotnet local tool as part of your `setup.ps1`. Local tools do not require any changes to PATH which make them ideal for both local development and CI scripts. However, in most scenarios GitVersion can be excluded from your local / development build process. If you are starting a new project, you may not have a tools manifest yet, you can create one easily:
 
