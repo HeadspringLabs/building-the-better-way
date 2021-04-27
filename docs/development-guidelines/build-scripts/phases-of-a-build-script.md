@@ -87,8 +87,7 @@ dotnet tool install gitVersion.tool
 
 GitVersion will generate an environment variable called `GITVERSION_SEMVER` that you should use for setting the assembly versions. Note this is not the default `GITVERSION_FULLSEMVER` which is not compatible in all contexts, such as Docker container tags. The `GITVERSION_SEMVER` string is usable everywhere.
 
-
-Read the documentation on how to configure a `GitVersion.yml` file and the different modes. There is a simple wizard that walks you through a few questions and suggests the mode you should use. Version numbers are incremented whenever merges are done back to master, and you can force a major version increase by adding a tag to your commit message.
+Read the documentation on how to configure a `GitVersion.yml` file and the different modes. Alternatively, there is a wizard that walks you through a few questions and suggests the mode you should use. Version numbers are incremented whenever merges are done back to master, and you can force a major version increase by adding a tag to your commit message.
 
 ```powershell
 # start the GitVersion project wizard
