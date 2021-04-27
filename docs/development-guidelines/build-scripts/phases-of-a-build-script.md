@@ -104,7 +104,7 @@ dotnet build --configuration $configuration --nologo -p:"Product=$($product)" -p
 
 Pay careful attention to the quoted strings, since these variables could end up with special characters, it is safer to quote the strings to avoid unexpected build failures later. This is how the build script sample implements the compilation process.
 
-## Complation
+## Compilation
 
 The compilation process converts source code to binaries. Most projects that are a unit of build will have a single solution file.
 
