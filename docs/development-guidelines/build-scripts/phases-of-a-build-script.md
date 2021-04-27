@@ -82,7 +82,7 @@ GitVersion should be added to your local tools. If you are starting a new projec
 
 ```powershell
 dotnet new tool-manifest
-dotnet tool istall gitVersion.tool
+dotnet tool install gitVersion.tool
 ```
 
 When you run the `setup.ps1` script on a new developer system or your CI system, it will add it as a local tool. This doesn't require any `PATH` changes so the CI system will pick it up easily.
