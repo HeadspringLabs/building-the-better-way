@@ -78,18 +78,15 @@ At compile time, MinVer will examine the latest Git tag and set the MSBuild vers
 {: .text-yellow-300 }
 [GitVersion](https://gitversion.readthedocs.io/en/latest/) is a more robust alternative to MinVer that takes the repository's branching strategy into consideration when generating version numbers. This comes with additional configuration complexity, but ultimately allows full version numbers to be applied with minimal-to-no developer intervention. This can be helpful in situations where versions are not "consumer-critical" e.g. good for pairing web releases to log properties, but not for Nuget packages or API versions.
 
-GitVersion should be added to your local tools. If you are starting a new project, you may not have a tools manifest yet, you can create one easily:
+GitVersion is a separate executable that should be installed as a dotnet local tool as part of your `setup.ps1`. Local tools do not require any changes to PATH which make them ideal for both local development and CI scripts. However, in most scenarios GitVersion can be excluded from your local / development build process. If you are starting a new project, you may not have a tools manifest yet, you can create one easily:
 
 ```powershell
 dotnet new tool-manifest
 dotnet tool install gitVersion.tool
 ```
 
-When you run the `setup.ps1` script on a new developer system or your CI system, it will add it as a local tool. This doesn't require any `PATH` changes so the CI system will pick it up easily.
+GitVersion will generate an environment variable called `GITVERSION_SEMVER` that you should use for setting the assembly versions. Note this is not the default `GITVERSION_FULLSEMVER` which is not compatible in all contexts, such as Docker container tags. The `GITVERSION_SEMVER` string is usable everywhere.
 
-In either case, running GitVersion doesn’t need to be part of your normal development build process. It will run in your CI system and generate environment variables that you can pick up and use during your build to apply version numbers to assemblies.
-
-Running this tool will generate a useful environment variable called `GITVERSION_SEMVER` that you should use for setting the assembly versions. The default will use `GITVERSION_FULLSEMVER` which is tempting, but creates version strings that are not compatible with Docker container tags, whereas `GITVERSION_SEMVER` is usable everywhere.
 
 Read the documentation on how to configure a `GitVersion.yml` file and the different modes. There is a simple wizard that walks you through a few questions and suggests the mode you should use. Version numbers are incremented whenever merges are done back to master, and you can force a major version increase by adding a tag to your commit message.
 
