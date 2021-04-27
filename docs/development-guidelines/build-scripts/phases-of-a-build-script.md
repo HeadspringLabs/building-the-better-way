@@ -94,7 +94,7 @@ Read the documentation on how to configure a `GitVersion.yml` file and the diffe
 dotnet gitversion init
 ```
 
-### **DO** rely on your CI system to produce an environment variable that will be used as your build version and pass it to your build step command line
+### **DO** rely on your CI system to produce an environment variable that will be used as your build version and pass it to your build step command line when not using MinVer
 {: .text-green-100 }
 Whichever method you end up using the overall goal is to generate a unique version and apply it to all or some of the projects in a solution. The .NET Core tooling uses MSBuild properties to set assembly versions instead of `AssemblyInfo.cs` files and attributes. You can pass these parameter to the dotnet build tool using the `-p` command line switch. Here's an example:
 
