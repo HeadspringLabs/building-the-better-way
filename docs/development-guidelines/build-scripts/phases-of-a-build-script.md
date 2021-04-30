@@ -104,6 +104,31 @@ dotnet build --configuration $configuration --nologo -p:"Product=$($product)" -p
 
 Pay careful attention to the quoted strings, since these variables could end up with special characters, it is safer to quote the strings to avoid unexpected build failures later. This is how the build script sample implements the compilation process.
 
+### **CONSIDER** including the Git hash in your version number as a unique differentiator during development
+{: .text-yellow-300 }
+
+When using manual version numbers or versioning tools based on Git, any concurrent development (or solo interactive rebasing) will risk versioning collisions before merging to mainline or explicitly re-numbering. This may cause conflicts or confusion when the version number is utilized, such as setting the build number, or on display in a PR deployment.
+
+To strictly and clearly differentiate revisions in these contexts, you should include the unique Git hash for a commit (or `sha`) with the general version number. In versioning lingo, this is "build metadata."
+
+You may or may not want to include build metadata in release versions. You should use leverage your CI tool and application code to include or exclude the build metadata with the version number based on the branch or context it is being used in.
+
+If you're using MinVer, you can add a custom [build metadata](https://github.com/adamralph/minver#can-i-include-build-metadata-in-the-version) suffix by setting the `MinVerBuildMetadata` environment variable on your build server. This will explicitly set the `MinVerBuildMetadata` property. Here is an example for making this change in Azure DevOps:
+
+```yaml
+variables:
+  MinVerBuildMetadata: Build.SourceVersion
+```
+
+If you're using GitVersion, there are [several environment variables](https://gitversion.net/docs/reference/variables) that automatically include the short or full sha, as well as some with development-relevant information such as branch name or PR info. You should either append the `Sha` or `ShortSha` variables to your SemVer number, or use the longer `FullBuildMetaData` or `InformationalVersion` in place of the general version number outright.
+
+If not using MinVer or GitVersion, you can retrieve the sha from git directly and save it to a variable, and then append it to the general version. You should follow the [SemVer spec](https://semver.org/spec/v2.0.0.html#spec-item-10) and denote the metadata suffix with a `+`:
+
+```powershell
+$sha = git rev-parse --short HEAD # exclude '--short' for full sha
+$buildVersion = "$version+$sha"
+```
+
 ## Compilation
 
 The compilation process converts source code to binaries. Most projects that are a unit of build will have a single solution file.
