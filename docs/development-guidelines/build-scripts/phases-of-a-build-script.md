@@ -62,7 +62,7 @@ In this example, you can use your CI system variable substitution to apply the c
 {: .text-yellow-300 }
 Semantic versioning (shortened to [SemVer](https://semver.org/)) is hugely important when sharing your code with other internal or external users downstream. When there are no downstream consumers of your code as a library, you have considerably more latitude in choosing a versioning scheme.
 
-### **DO** use a versioning tool to apply a unique version based on your Git tags and history
+### **DO** use MinVer for versioning code libraries or projects that require a predictable version number
 {: .text-green-100 }
 [MinVer](https://github.com/adamralph/minver#readme) is a simple tool that generates a SemVer-compliant version number at build-time based on Git history. When building a particular Git revision with MinVer installed, it will always generate the same version number. Unlike other automated versioning tools, MinVer is based exclusively on Git tags and commit "height" between tags, granting a great deal of control over the version, regardless of branching strategy.
 
@@ -74,7 +74,7 @@ dotnet add package MinVer
 
 At compile time, MinVer will examine the latest Git tag and set the MSBuild version properties (_not_ `AssemblyInfo.cs`). You can also use the generated numbers for [other purposes](https://github.com/adamralph/minver#can-i-use-the-version-calculated-by-minver-for-other-purposes) or [customize MinVer](https://github.com/adamralph/minver#options) to fit specific numbering and release schemes, if needed.
 
-### **CONSIDER** using GitVersion to apply unique versions without any dev intervention
+### **CONSIDER** using GitVersion for versioning top-level applications or projects where the version number is informational or decorative
 {: .text-yellow-300 }
 [GitVersion](https://gitversion.readthedocs.io/en/latest/) is a more robust alternative to MinVer that takes the repository's branching strategy into consideration when generating version numbers. This comes with additional configuration complexity, but ultimately allows full version numbers to be applied with minimal-to-no developer intervention. This can be helpful in situations where versions are not attached to 'shared' code e.g. good for matching standalone app releases with log properties, but bad for for NuGet libraries or APIs.
 
