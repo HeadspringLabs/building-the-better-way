@@ -76,9 +76,9 @@ At compile time, MinVer will examine the latest Git tag and set the MSBuild vers
 
 ### **CONSIDER** using GitVersion for versioning top-level applications or projects where the version number is informational or decorative
 {: .text-yellow-300 }
-[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a more robust alternative to MinVer that takes the repository's branching strategy into consideration when generating version numbers. This comes with additional configuration complexity, but ultimately allows full version numbers to be applied with minimal-to-no developer intervention. This can be helpful in situations where versions are not attached to 'shared' code e.g. good for matching standalone app releases with log properties, but bad for for NuGet libraries or APIs.
+[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a more robust alternative to MinVer that takes the repository's branching strategy into consideration when generating version numbers. This comes with additional configuration complexity, but ultimately allows a full version number to be applied with minimal-to-no developer intervention. This can be helpful in situations where versions are not attached to 'shared' code e.g. good for matching standalone app releases with log properties, but bad for for code libraries or APIs (use MinVer instead).
 
-GitVersion is a separate executable that should be installed as a dotnet local tool as part of your `setup.ps1`. Local tools do not require any changes to PATH which make them ideal for both local development and CI scripts. However, in most scenarios GitVersion can be excluded from your local / development build process. If you are starting a new project, you may not have a tools manifest yet, you can create one easily:
+GitVersion is a separate executable that should be installed as a dotnet local tool as part of your `setup.ps1`. Local tools do not require any changes to PATH, which make them ideal for both local development and CI scripts. However, in most scenarios GitVersion can be excluded from your local / development build process. If you are starting a new project, you may not have a tools manifest yet, you can create one easily:
 
 ```powershell
 dotnet new tool-manifest
