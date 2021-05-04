@@ -64,7 +64,7 @@ Semantic versioning (shortened to [SemVer](https://semver.org/)) is hugely impor
 
 ### **DO** use MinVer for versioning code libraries or projects that require a predictable version number
 {: .text-green-100 }
-[MinVer](https://github.com/adamralph/minver#readme) is a simple tool that generates a SemVer-compliant version number at build-time based on Git history. When building a particular Git revision with MinVer installed, it will always generate the same version number. Unlike other automated versioning tools, MinVer is based exclusively on Git tags and commit "height" between tags, granting a great deal of control and consistency over the version, regardless of branching strategy. This makes it the ideal tool for situations where the difference in code reversions is meaningful to consumers, such as libraries or APIs.
+[MinVer](https://github.com/adamralph/minver#readme) is a simple tool that generates a SemVer-compliant version number at build-time based on Git history. When building a particular Git revision with MinVer installed, it will always generate the same version number. Unlike other automated versioning tools, MinVer is based exclusively on Git tags and commit "height" between tags, granting a great deal of control and consistency over the version, regardless of branching strategy. This makes it the ideal tool for situations where the difference in code versions is meaningful to consumers, such as libraries or APIs.
 
 MinVer is a NuGet package. Whether you are starting a new project or introducing it later, you should install the [package](https://www.nuget.org/packages/MinVer) for all projects that need to be versioned:
 
